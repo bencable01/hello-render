@@ -17,7 +17,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.http.get('http://localhost:3000/api/users').subscribe(result => {
+    const isLocalhost = window.location.hostname.includes('localhost');
+    const api = isLocalhost ? 'http://localhost:3000/api/users' : 'https://render-api-8ag4.onrender.com/api/users';
+
+      this.http.get(api).subscribe(result => {
         var brctodo = 43;
         this.username = result.toString();
       });
